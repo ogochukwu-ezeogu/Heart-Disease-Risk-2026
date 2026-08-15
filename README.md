@@ -23,16 +23,16 @@ As the Health Data Analyst, I uncover potential risk factors and causes of heart
 - Among wearable owners specifically, how does heart disease prevalence vary by activity tier and sleep tier?
 - Does the mean LDL/HDL ratio differ significantly between people with and without heart disease?
 
-# Data Source 
+## Data Source 
 Kaggle. This dataset is structured as cross-sectional epidemiological data, containing outcome, exposure, and demographic variables suitable for descriptive and inferential epidemiological analysis. 
 It is treated as simulated data for analytical practice rather than verified clinical surveillance data.
 
-# Tools
+## Tools
 - Google Sheets - Data Preview 
 - RStudio - Data Cleaning, Statistical and Epidemiological Analysis
 - Tableau - Data Visualization
 
-Analytical Process
+## Analytical Process
 
 
 

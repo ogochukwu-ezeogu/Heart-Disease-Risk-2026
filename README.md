@@ -8,7 +8,7 @@ This is a secondary dataset collected from Kaggle; it contains substantial data 
 ## My Role
 As the Health Data Analyst, I uncover potential risk factors and causes of heart disease among different age groups, provide insights and recommendations that influence decision-making, promote healthy living, and provide health information. This data analytics covered descriptive, exploratory, and epidemiological analyses of heart disease risk for the year 2026.
 
-Project Objectives:
+## Analysis Questions
 - What is the rate of heart disease across sex and age group, alongside average BMI?
 - How do lipid panel values (LDL, HDL, cholesterol, triglycerides) and heart disease rate vary by sex and age group?
 - Does the LDL/HDL ratio predict heart disease better than either value alone?
@@ -27,8 +27,12 @@ Project Objectives:
 Kaggle. This dataset is structured as cross-sectional epidemiological data, containing outcome, exposure, and demographic variables suitable for descriptive and inferential epidemiological analysis. 
 It is treated as simulated data for analytical practice rather than verified clinical surveillance data.
 
+# Tools
+- Google Sheets - Data Preview 
+- RStudio - Data Cleaning, Statistical and Epidemiological Analysis
+- Tableau - Data Visualization
 
-
+Analytical Process
 
 
 

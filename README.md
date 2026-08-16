@@ -207,12 +207,38 @@ ggplot(cor_melted, aes(x = Var1, y = Var2, fill = value)) +
 ```
 <img width="779" height="519" alt="Heart Disaease Correlation Heat Map" src="https://github.com/user-attachments/assets/c5111c98-6c6e-425a-b566-79c8ac9b857c" />
 
+Heat Map Interpretation: The red cells indicate a positive correlation (both variables tend to rise together), Blue cells indicate a negative correlation (as one rises, the other falls), and pale/white cells indicate little to no linear relationship. The diagonal is always solid red, since every variable correlates perfectly with itself.
+
+### LDL/HDL Ratio: 
+
+Does the LDL/HDL Outperform Either Measure Alone?
+
+A derived variable — the LDL/HDL ratio — was created to test whether the balance between "bad" and "good" cholesterol carries more information than either measure alone:
+
+```r
+HRD_Grouped <- HRD_Grouped %>% 
+  mutate(ldl_hdl_ratio = ldl / hdl)
+
+cor(HRD_Grouped$ldl, HRD_Grouped$has_heart_disease)
+cor(HRD_Grouped$hdl, HRD_Grouped$has_heart_disease)
+cor(HRD_Grouped$ldl_hdl_ratio, HRD_Grouped$has_heart_disease)
+```
+The Outcome of this syntax: 
+
+| Variable      | Correlation with Heart Disease|
+|---------------|-------------------------------|
+| LDL alone     | 	 0.267                      |
+| HDL alone	    |   -0.252                      |
+| LDL/HDL ratio | 	 0.353                      |
 
 
+The LDL/HDL ratio shows a stronger correlation with heart disease (0.353) than either LDL (0.267) or HDL (-0.252) individually. 
+This suggests the balance between these two lipid measures carries more predictive information than either measure in isolation, consistent with established cardiovascular risk literature, where lipid ratios are commonly used for this reason. It also indicates that HDL has little to no potential to cause heart disease; hence it is "Good Cholesterol".
+All three correlations fall in the moderate range (0.25–0.35), meaning each is a real but partial signal, not a strong standalone predictor.
 
+**The Interpretation**
 
-
-
+This Exploratory analysis confirmed that no single variable dominates the picture except for **"max_heart_rate_achieved"**, which rates 0.5+ and thus does not have the potential to cause heart disease. It also validated that combining LDL and HDL into a ratio adds real analytical value over using either measure alone. These findings directly shaped which relationships were prioritized for formal statistical testing in the epidemiological analysis that follows — smoking status, family history, and the LDL/HDL ratio were each carried forward for significance testing based on the strength and clinical relevance of what this exploratory step revealed.
 
 
 

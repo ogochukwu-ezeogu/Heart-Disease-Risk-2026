@@ -233,12 +233,13 @@ The Outcome of this syntax:
 
 
 The LDL/HDL ratio shows a stronger correlation with heart disease (0.353) than either LDL (0.267) or HDL (-0.252) individually. 
-This suggests the balance between these two lipid measures carries more predictive information than either measure in isolation, consistent with established cardiovascular risk literature, where lipid ratios are commonly used for this reason. It also indicates that HDL has little to no potential to cause heart disease; hence it is "Good Cholesterol".
+This suggests the balance between these two lipid measures carries more predictive information than either measure in isolation, consistent with established cardiovascular risk literature, where lipid ratios are commonly used for this reason. It also indicates that HDL's negative correlation (-0.252) reflects its role as a protective factor — as HDL rises, heart disease likelihood tends to fall. 
+This is consistent with HDL's clinical designation as 'good cholesterol,' distinct from LDL's positive, harmful association.
 All three correlations fall in the moderate range (0.25–0.35), meaning each is a real but partial signal, not a strong standalone predictor.
 
 **The Interpretation**
 
-This Exploratory analysis confirmed that no single variable dominates the picture except for **"max_heart_rate_achieved"**, which rates 0.5+ and thus does not have the potential to cause heart disease. It also validated that combining LDL and HDL into a ratio adds real analytical value over using either measure alone. These findings directly shaped which relationships were prioritized for formal statistical testing in the epidemiological analysis that follows — smoking status, family history, and the LDL/HDL ratio were each carried forward for significance testing based on the strength and clinical relevance of what this exploratory step revealed.
+This exploratory analysis confirmed that max_heart_rate_achieved shows the strongest relationship with heart disease of any variable in the dataset (r ≈ -0.58) — a strong negative association, meaning lower max heart rate achieved is strongly linked to higher heart disease likelihood. This is clinically sensible, reflecting reduced cardiovascular capacity as a marker of risk. It also validated that combining LDL and HDL into a ratio adds real analytical value over using either measure alone. These findings directly shaped which relationships were prioritized for formal statistical testing in the epidemiological analysis that follows — smoking status, family history, and the LDL/HDL ratio were each carried forward for significance testing based on the strength and clinical relevance of what this exploratory step revealed.
 
 
 

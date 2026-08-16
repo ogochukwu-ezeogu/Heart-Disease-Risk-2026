@@ -32,7 +32,8 @@ It is treated as simulated data for analytical practice rather than verified cli
 - Tableau - Data Visualization
 
 ## Analytical Process
-Data Cleaning & Wrangling --> Data Formatting --> Data Review & De-duplication --> Descriptive Analysis --> Exploraory Analysis --> Epidemiological Analysis
+Data Cleaning & Wrangling --> Data Formatting --> Data Review & De-duplication --> Descriptive Analysis --> Exploraory Analysis --> Epidemiological Analysis.
+
 The dataset was accessed via Kaggle and uploaded to Google Sheets for a first preview before ensuring consistency of records. All of these were done before uploading the dataset to RStudio. 
 
 R Packages Used during the analysis:

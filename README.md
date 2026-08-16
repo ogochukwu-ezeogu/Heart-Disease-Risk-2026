@@ -132,46 +132,86 @@ HRD = Heart Disease
 |   Low_baseline     |     Male      |  25.9         |  0.14                   | 94                           |
 
 
- - Lipid panel values and heart disease rate by sex and age group
+### **Lipid panel values and heart disease rate by sex and age group**
 
 <img width="681" height="256" alt="Screenshot (293)" src="https://github.com/user-attachments/assets/65393d80-4de3-4041-9339-82ea016968c3" />
 
- - Chest pain type by age group and sex
+### **Chest pain type by age group and sex**
 
-**Asymptomatic Chest Pain**
+  - _**Asymptomatic Chest Pain**_
 
 <img width="525" height="234" alt="Screenshot (294)" src="https://github.com/user-attachments/assets/ad9466dc-eda0-4f54-b36c-aaa1819d6667" />
 
-**Atypical Angina**
+  - _**Atypical Angina**_
 
 <img width="483" height="219" alt="Screenshot (295)" src="https://github.com/user-attachments/assets/ed00d24c-196b-4972-b8ab-bb56f419890b" />
 
-**Non-Anginal Pain**
+ - _**Non-Anginal Paint**_
 
 <img width="478" height="225" alt="Screenshot (296)" src="https://github.com/user-attachments/assets/5e78347c-5256-4186-9d00-3be25f08b4d1" />
 
-**Typical Angina**
+ - _**Typical Angina**_
 
 <img width="491" height="197" alt="Screenshot (297)" src="https://github.com/user-attachments/assets/f7e35c0e-ad17-4c9b-a965-513b5edfcf89" />
 
-
- - **Blood pressure stage and heart disease rate by age group**
+### **Blood pressure stage and heart disease rate by age group**
 
 <img width="616" height="449" alt="Screenshot (298)" src="https://github.com/user-attachments/assets/80f1fbf0-c94c-40ef-a343-208eaa92cfee" />
 
- - **Glycemic status, triglyceride level, and heart disease prevalence**
+### **Glycemic status, triglyceride level, and heart disease prevalence**
 
 <img width="613" height="176" alt="Screenshot (299)" src="https://github.com/user-attachments/assets/b8d3b8dc-5337-4189-8b54-4463f65be424" />
 
-**Activity and sleep tier among wearable owners**
+### **Activity and sleep tier among wearable owners**
 
 <img width="499" height="169" alt="Screenshot (300)" src="https://github.com/user-attachments/assets/5586ab69-3f8e-4690-96e7-5bf7cd7978bc" />
 
+
 ### Interpretation
 
-The descriptive layer confirms the dataset behaves as expected for a cardiovascular risk dataset: heart disease prevalence is higher in males than females, and the AHA and ADA-based clinical classifications produced complete, non-overlapping patient groupings with no unclassified cases. These descriptive patterns form the foundation for the exploratory and epidemiological analyses that follow, where specific exposure-outcome relationships are tested f
+The descriptive layer confirms the dataset behaves as expected for a cardiovascular risk dataset: heart disease prevalence is higher in males than females, and the AHA and ADA-based clinical classifications produced complete, non-overlapping patient groupings with no unclassified cases. These descriptive patterns form the foundation for the exploratory and epidemiological analyses that follow, where specific exposure-outcome relationships are tested.
 
 ## Exploratory Analysis
+After establishing the descriptive aspects of the data, the patient data were examined across all available variables to identify the factors that share the strongest relationship to potential heart issues.
+All of these were done to get a clear direction for hypothesis testing and exploratory analysis. This is a discovery step: it doesn't confirm causation or statistical significance; it identifies where the strongest signals are, so the epidemiological analysis that follows can focus on the relationships most worth testing rigorously.
+
+### **Correlation Matrix**
+
+For the exploratory analysis, a correlation matrix was built across all numeric clinical and lifestyle variables against has_heart_disease:
+
+```r
+numeric_vars <- HRD_Grouped %>% 
+  select(age, resting_bp_systolic, resting_bp_diastolic, cholesterol_total, ldl, hdl, 
+         triglycerides, resting_heart_rate, ldl_hdl_ratio,
+         max_heart_rate_achieved, bmi, exercise_minutes_per_week, 
+         daily_steps, sleep_hours, stress_score, has_heart_disease)
+
+cor_matrix <- cor(numeric_vars, use = "complete.obs")
+
+
+```
+With the results from these numeric variables, a heatmap representing the correlation was created for visual interpretation:
+
+```r
+library(ggplot2)
+library(reshape2)
+
+cor_melted <- melt(cor_matrix)
+
+ggplot(cor_melted, aes(x = Var1, y = Var2, fill = value)) +
+  geom_tile() +
+  scale_fill_gradient2(low = "blue", mid = "white", high = "red", midpoint = 0) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  labs(title = "Correlation Heatmap: Heart Disease Risk Factors",
+       x = "", y = "", fill = "Correlation")
+```
+<img width="779" height="519" alt="Heart Disaease Correlation Heat Map" src="https://github.com/user-attachments/assets/c5111c98-6c6e-425a-b566-79c8ac9b857c" />
+
+
+
+
+
+
 
 
 

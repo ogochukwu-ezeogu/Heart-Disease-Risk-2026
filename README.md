@@ -32,7 +32,7 @@ It is treated as simulated data for analytical practice rather than verified cli
 - Tableau - Data Visualization
 
 ## Analytical Process
-Data Cleaning & Wrangling --> Data Formatting --> Data Review & De-duplication --> Descriptive Analysis --> Exploraory Analysis --> Epidemiological Analysis.
+Data Cleaning & Wrangling --> Data Formatting --> Data Review & De-duplication --> Descriptive Analysis --> Exploratory Analysis --> Epidemiological Analysis.
 
 The dataset was accessed via Kaggle and uploaded to Google Sheets for a first preview before ensuring consistency of records. All of these were done before uploading the dataset to RStudio. 
 
@@ -115,30 +115,47 @@ HRD_Metabolic <- HRD_Grouped %>%
       "High_TG", 
       "Normal_TG"))
 ```
-With these segmentations, the dataset became 9000 obs and 32 variables, compared to 9000 obs and 29 variables as per the initial dataset
+With these segmentations, the dataset became 9000 obs and 32 variables, compared to 9000 obs and 29 variables in the initial dataset
+HRD = Heart Disease
 
-Heart disease rate and BMI by sex and age group
-| Age Group          |     Sex       |  Average BMI  | Avg Heart Disease Rate  | Total      |  
-|--------------------|---------------|---------------|-------------------------|------------|
-|  At_risk           |	   Female    |    25.6       |                         |            |
-|  High_risk         |     Female    |   25.4        |                         |            |
-|   On_set  	       |     Female    |   25.3        |                         |            |
-| Low_baseline       |     FeMale    |   24.9        |                         |            |
-|   At_risk          |     Male      |               |                         |            |
-|   High_risk        |     Male      |               |                         |            |
-|   Onset            |     Male      |               |                         |            |
-|   Low_baseline     |     Male      |               |                         |            |
+ - Heart disease rate and BMI by sex and age group
+   
+| Age Group          |     Sex       |  Average BMI  | Avg. HRD Rate           | Total HRD Rate               |  
+|--------------------|---------------|---------------|-------------------------|------------------------------|
+|  At_risk           |	   Female    |    25.6       | 0.49                    |120                           |
+|  High_risk         |     Female    |   25.4        | 0.37                    |460                           |
+|   On_set  	       |     Female    |   25.3        | 0.20                    |435                           |
+| Low_baseline       |     FeMale    |   24.9        | 0.07                    | 39                           |
+|   At_risk          |     Male      |    25.6       | 0.64                    | 180                          |
+|   High_risk        |     Male      |   25.3        |  0.49                   | 649                          |
+|   Onset            |     Male      |  25.3         |  0.30                   | 750                          |
+|   Low_baseline     |     Male      |  25.9         |  0.14                   | 94                           |
 
 
-Lipid panel values and heart disease rate by sex and age group
+ - Lipid panel values and heart disease rate by sex and age group
 
-(Insert Lipoprotein table output here — avg_LDL, avg_HDL, avg_cholesterol, avg_triglyceride, PercentHrd by sex and Age_Group)
+<img width="681" height="256" alt="Screenshot (293)" src="https://github.com/user-attachments/assets/65393d80-4de3-4041-9339-82ea016968c3" />
 
-Chest pain type by age group and sex
+ - Chest pain type by age group and sex
 
-(Insert Chestpain table output here — Total_HRD, Avg_HRD by chest_pain_type, Age_Group, sex)
+**Asymptomatic Chest Pain**
 
-Blood pressure stage and heart disease rate by age group
+<img width="525" height="234" alt="Screenshot (294)" src="https://github.com/user-attachments/assets/ad9466dc-eda0-4f54-b36c-aaa1819d6667" />
+
+**Atypical Angina**
+
+<img width="483" height="219" alt="Screenshot (295)" src="https://github.com/user-attachments/assets/ed00d24c-196b-4972-b8ab-bb56f419890b" />
+
+**Non-Anginal Pain**
+
+<img width="478" height="225" alt="Screenshot (296)" src="https://github.com/user-attachments/assets/5e78347c-5256-4186-9d00-3be25f08b4d1" />
+
+**Typical Angina**
+
+<img width="491" height="197" alt="Screenshot (297)" src="https://github.com/user-attachments/assets/f7e35c0e-ad17-4c9b-a965-513b5edfcf89" />
+
+
+ - Blood pressure stage and heart disease rate by age group
 
 (Insert Hypertension_Staging table output here — Disease_Rate, Total_Patients by BP_Stage, Age_Group)
 
@@ -152,11 +169,11 @@ Activity and sleep tier among wearable owners
 
 Note: this table currently describes patterns within wearable owners only. A full comparison against non-owners — needed to properly test whether wearable ownership is associated with lower risk — is planned as a next step.
 
-Interpretation
+### Interpretation
 
 The descriptive layer confirms the dataset behaves as expected for a cardiovascular risk dataset: heart disease prevalence is higher in males than females, and the AHA and ADA-based clinical classifications produced complete, non-overlapping patient groupings with no unclassified cases. These descriptive patterns form the foundation for the exploratory and epidemiological analyses that follow, where specific exposure-outcome relationships are tested f
 
-
+## Exploratory Analysis
 
 
 

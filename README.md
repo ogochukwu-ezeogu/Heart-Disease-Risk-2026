@@ -155,19 +155,17 @@ HRD = Heart Disease
 <img width="491" height="197" alt="Screenshot (297)" src="https://github.com/user-attachments/assets/f7e35c0e-ad17-4c9b-a965-513b5edfcf89" />
 
 
- - Blood pressure stage and heart disease rate by age group
+ - **Blood pressure stage and heart disease rate by age group**
 
-(Insert Hypertension_Staging table output here — Disease_Rate, Total_Patients by BP_Stage, Age_Group)
+<img width="616" height="449" alt="Screenshot (298)" src="https://github.com/user-attachments/assets/80f1fbf0-c94c-40ef-a343-208eaa92cfee" />
 
-Glycemic status, triglyceride level, and heart disease prevalence
+ - **Glycemic status, triglyceride level, and heart disease prevalence**
 
-(Insert Metabolic_Profiles table output here — Patient_Count, Heart_Disease_Prevalence, Avg_Stress by Glycemic_State, Lipid_Trig_State)
+<img width="613" height="176" alt="Screenshot (299)" src="https://github.com/user-attachments/assets/b8d3b8dc-5337-4189-8b54-4463f65be424" />
 
-Activity and sleep tier among wearable owners
+**Activity and sleep tier among wearable owners**
 
-(Insert Lifestyle_Protection_Matrix table output here — Prevalence, Avg_Stress, Volume by Activity_Tier, Sleep_Tier)
-
-Note: this table currently describes patterns within wearable owners only. A full comparison against non-owners — needed to properly test whether wearable ownership is associated with lower risk — is planned as a next step.
+<img width="499" height="169" alt="Screenshot (300)" src="https://github.com/user-attachments/assets/5586ab69-3f8e-4690-96e7-5bf7cd7978bc" />
 
 ### Interpretation
 

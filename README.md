@@ -305,7 +305,7 @@ t = -32.125, df = 4142.9, p-value < 2.2e-16
 Mean in group 0 (no heart disease): 1.809
 Mean in group 1 (heart disease):    2.415
 
-Interpretation: patients with heart disease had a significantly higher mean LDL/HDL ratio (2.42) than those without (1.81) — a difference of roughly 0.61, with a 95% confidence interval (0.570 to 0.644) that does not cross zero. This confirms, with formal statistical evidence, that the LDL/HDL ratio's relationship with heart disease identified in the exploratory analysis is real and substantial, not merely correlational.
+Interpretation: Patients with heart disease had a significantly higher mean LDL/HDL ratio (2.42) than those without (1.81) — a difference of roughly 0.61, with a 95% confidence interval (0.570 to 0.644) that does not cross zero. This confirms, with formal statistical evidence, that the LDL/HDL ratio's relationship with heart disease identified in the exploratory analysis is real and substantial, not merely correlational.
 
 ### Wearable Ownership: Testing for Confounding
 
@@ -316,6 +316,8 @@ This question was ultimately resolved more rigorously through the multivariable 
 **Sleep Duration and Heart Disease: Testing the U-Shape**
 
 Sleep hours were binned into six categories to test whether both insufficient and excessive sleep are associated with elevated risk, with the lowest risk in a middle range — a well-documented pattern in sleep research.
+
+<img width="837" height="519" alt="Heart Disease U-Curve" src="https://github.com/user-attachments/assets/9c7ceeda-5c7c-491b-a7f3-1f1efa0c8e29" />
 
 **Outcome:**
 
@@ -350,7 +352,7 @@ As previously noted, this dataset is very likely simulated rather than real clin
 
 
 
-
+### The full syntax of this analysis has been attached to this repository for your perusal if needed
 
 ## References
 **World Health Organization (2025). Cardiovascular diseases (CVDs). [online] World Health Organization. Available at: https://www.who.int/news-room/fact-sheets/detail/cardiovascular-diseases-(cvds) 

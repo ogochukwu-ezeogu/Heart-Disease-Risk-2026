@@ -302,12 +302,12 @@ The exploratory analysis showed the LDL/HDL ratio correlates more strongly with 
 Welch two-sample t-test
 t = -32.125, df = 4142.9, p-value < 2.2e-16
 95 percent confidence interval: -0.6438799 to -0.5698104
-mean in group 0 (no heart disease): 1.809
+Mean in group 0 (no heart disease): 1.809
 Mean in group 1 (heart disease):    2.415
 
 Interpretation: patients with heart disease had a significantly higher mean LDL/HDL ratio (2.42) than those without (1.81) — a difference of roughly 0.61, with a 95% confidence interval (0.570 to 0.644) that does not cross zero. This confirms, with formal statistical evidence, that the LDL/HDL ratio's relationship with heart disease identified in the exploratory analysis is real and substantial, not merely correlational.
 
-###Wearable Ownership: Testing for Confounding
+### Wearable Ownership: Testing for Confounding
 
 The original question: Do wearable owners show a genuinely lower heart disease risk, or is this explained by owners simply being more active, requiring comparing owners against non-owners directly, not describing owners in isolation.
 

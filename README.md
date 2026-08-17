@@ -337,7 +337,15 @@ LDL/HDL ratio remains the strongest modifiable clinical predictor, with each 1-u
 Age showed a counterintuitive negative association (OR 0.925) after adjustment. This is best explained by age's strong correlation with max_heart_rate_achieved, already included in the model — a statistical phenomenon known as suppression, where age's independent effect is masked by a closely related covariate that already accounts for much of its predictive value. This does not mean age is unimportant; its effect is being captured through max heart rate rather than acting as a separate pathway.
 
 
+**Interpretation**
 
+The epidemiological analysis confirms that smoking status, family history, and the LDL/HDL ratio are each statistically significant, independent risk factors for heart disease in this dataset — their associations held up even after adjusting for one another and for demographic and clinical covariates simultaneously. The multivariable model additionally resolved the original question of whether wearable ownership relates to heart disease risk beyond simple activity level: it does, modestly, even after controlling for exercise minutes directly. Sleep duration shows a clear U-shaped visual pattern consistent with established sleep research, though this has not yet been backed by formal significance testing.
+
+**Limitations of this stage:**
+
+The sleep U-shape is currently descriptive and visual only; it has not been tested for statistical significance (e.g., comparing short-sleep and long-sleep groups against the optimal-range reference group using the same risk ratio and chi-square approach applied to smoking and family history).
+The dataset is cross-sectional, meaning all associations reflect a single point in time. None of the findings in this analysis can be interpreted as causal — they describe statistical association, not proof that any one factor directly causes heart disease.
+As previously noted, this dataset is very likely simulated rather than real clinical data, given its completeness (zero missing values across all variables). Findings should be understood as a demonstration of correct epidemiological method, not as verified real-world clinical evidence.
 
 
 

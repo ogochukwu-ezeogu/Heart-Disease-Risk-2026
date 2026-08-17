@@ -29,12 +29,12 @@ It is treated as simulated data for analytical practice rather than verified cli
 ## Tools
 - Google Sheets - Data Preview 
 - RStudio - Data Cleaning, Statistical and Epidemiological Analysis
-- Tableau - Data Visualization
+- Tableau & ggplot - Data Visualization
 
 ## Analytical Process
 Data Cleaning & Wrangling --> Data Formatting --> Data Review & De-duplication --> Descriptive Analysis --> Exploratory Analysis --> Epidemiological Analysis.
 
-The dataset was accessed via Kaggle and uploaded to Google Sheets for a first preview before ensuring consistency of records. All of these were done before uploading the dataset to RStudio. 
+The dataset was accessed via Kaggle and uploaded to Google Sheets for a first preview before ensuring record consistency. All of these were done before uploading the dataset to RStudio. 
 
 R Packages Used during the analysis:
 library(tidyverse)
@@ -239,7 +239,82 @@ All three correlations fall in the moderate range (0.25–0.35), meaning each is
 
 **The Interpretation**
 
-This exploratory analysis confirmed that max_heart_rate_achieved shows the strongest relationship with heart disease of any variable in the dataset (r ≈ -0.58) — a strong negative association, meaning lower max heart rate achieved is strongly linked to higher heart disease likelihood. This is clinically sensible, reflecting reduced cardiovascular capacity as a marker of risk. It also validated that combining LDL and HDL into a ratio adds real analytical value over using either measure alone. These findings directly shaped which relationships were prioritized for formal statistical testing in the epidemiological analysis that follows — smoking status, family history, and the LDL/HDL ratio were each carried forward for significance testing based on the strength and clinical relevance of what this exploratory step revealed.
+This exploratory analysis confirmed that max_heart_rate_achieved shows the strongest relationship with heart disease of any variable in the dataset (r ≈ -0.58) — a strong negative association, meaning lower max heart rate achieved is strongly linked to higher heart disease likelihood. This is clinically sensible, reflecting reduced cardiovascular capacity as a marker of risk. It also validated that combining LDL and HDL into a ratio adds real analytical value over using either measure alone. These findings directly shaped which relationships were prioritized for formal statistical testing in the epidemiological analysis that follows — smoking status, family history, and the LDL/HDL ratio were each carried forward for significance testing based on the strength and clinical relevance of the exploratory findings.
+
+
+### Epidemiological Analysis
+
+With the strongest signals identified through exploratory analysis, this stage moves from discovery to confirmation, formally testing whether specific exposure-outcome relationships are real associations, how strong they are, and whether they could plausibly be explained by chance alone. This is the layer that distinguishes a pattern worth reporting from a pattern that happens to appear in one dataset.
+
+- **Smoking Status and Heart Disease Risk**
+
+Heart disease rate was calculated for each smoking category, using "Never" smokers as the reference group:
+
+```r
+exposed_group <- HRD_Grouped %>% 
+  group_by(smoker_status) %>% 
+  summarise(total_HRD = sum(has_heart_disease, na.rm = TRUE),
+            avg_HRD = mean(has_heart_disease, na.rm = TRUE),
+            percent_HRd = mean(has_heart_disease, na.rm = TRUE) * 100,
+            .groups = "drop")
+
+reference_rate <- exposed_group %>% 
+  filter(smoker_status == "Never") %>% 
+  pull(avg_HRD)
+
+exposed_group <- exposed_group %>% 
+  mutate(risk_ratio = avg_HRD / reference_rate,
+         risk_difference = avg_HRD - reference_rate)
+```
+
+| Smoker Status |	Risk Ratio (vs. Never)|
+|---------------|-----------------------|
+| Never         |     1.000             |
+| Former	      |     1.200             |
+| Current	      |     1.841             |
+
+<img width="588" height="102" alt="Screenshot (301)" src="https://github.com/user-attachments/assets/90f94351-c805-493e-848c-47a59708db89" />
+
+Heart disease risk rises with smoking exposure in a clear, graded pattern. Current smokers show 84% higher risk than never-smokers, and former smokers show an intermediate 20% higher risk — consistent with a dose-response relationship, where greater or more recent smoking exposure corresponds to greater risk.
+
+Statistical significance: to confirm this pattern is not due to chance, a chi-square test of independence was run between smoker status and heart disease status:
+
+Result: X-squared = 254.68, df = 2, p < 2.2e-16
+
+This p-value is far below the conventional 0.05 threshold, confirming that the association between smoking status and heart disease is statistically real, not a chance pattern in this sample.
+
+Family History and Heart Disease Risk
+
+The same risk ratio approach was applied to family history, using patients without a family history as the reference group:
+
+| Family                          | History	Risk Ratio|
+|---------------------------------|-------------------|
+| False (no family history)	      |   1.000           |
+|  True (family history present)	|    1.257          |
+
+Finding: patients with a family history of heart disease show approximately 26% higher risk than those without. This is a smaller effect than current smoking status (84% higher), suggesting that in this dataset, smoking carries a higher relative risk than hereditary predisposition alone.
+
+LDL/HDL Ratio: Testing for a Significant Difference
+
+The exploratory analysis showed the LDL/HDL ratio correlates more strongly with heart disease than LDL or HDL alone. This was followed up with a formal significance test, comparing the mean ratio between patients with and without heart disease:
+
+Welch two-sample t-test
+t = -32.125, df = 4142.9, p-value < 2.2e-16
+95 percent confidence interval: -0.6438799 to -0.5698104
+mean in group 0 (no heart disease): 1.809
+mean in group 1 (heart disease):    2.415
+
+Interpretation: patients with heart disease had a significantly higher mean LDL/HDL ratio (2.42) than those without (1.81) — a difference of roughly 0.61, with a 95% confidence interval (0.570 to 0.644) that does not cross zero. This confirms, with formal statistical evidence, that the LDL/HDL ratio's relationship with heart disease identified in the exploratory analysis is real and substantial, not merely correlational.
+
+Wearable Ownership: Testing for Confounding
+
+The original question — do wearable owners show a genuinely lower heart disease risk, or is this explained by owners simply being more active — required comparing owners against non-owners directly, not describing owners in isolation.
+
+
+
+
+
+
 
 
 

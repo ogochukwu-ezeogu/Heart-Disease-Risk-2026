@@ -292,7 +292,8 @@ The same risk ratio approach was applied to family history, using patients witho
 | False (no family history)	      |   1.000           |
 |  True (family history present)	|    1.257          |
 
-Finding: patients with a family history of heart disease show approximately 26% higher risk than those without. This is a smaller effect than current smoking status (84% higher), suggesting that in this dataset, smoking carries a higher relative risk than hereditary predisposition alone.
+Outcome: 
+Patients with a family history of heart disease show approximately 26% higher risk than those without. This is a smaller effect than current smoking status (84% higher), suggesting that in this dataset, smoking carries a higher relative risk than hereditary predisposition alone.
 
 LDL/HDL Ratio: Testing for a Significant Difference
 
@@ -302,14 +303,38 @@ Welch two-sample t-test
 t = -32.125, df = 4142.9, p-value < 2.2e-16
 95 percent confidence interval: -0.6438799 to -0.5698104
 mean in group 0 (no heart disease): 1.809
-mean in group 1 (heart disease):    2.415
+Mean in group 1 (heart disease):    2.415
 
 Interpretation: patients with heart disease had a significantly higher mean LDL/HDL ratio (2.42) than those without (1.81) — a difference of roughly 0.61, with a 95% confidence interval (0.570 to 0.644) that does not cross zero. This confirms, with formal statistical evidence, that the LDL/HDL ratio's relationship with heart disease identified in the exploratory analysis is real and substantial, not merely correlational.
 
-Wearable Ownership: Testing for Confounding
+###Wearable Ownership: Testing for Confounding
 
-The original question — do wearable owners show a genuinely lower heart disease risk, or is this explained by owners simply being more active — required comparing owners against non-owners directly, not describing owners in isolation.
+The original question: Do wearable owners show a genuinely lower heart disease risk, or is this explained by owners simply being more active, requiring comparing owners against non-owners directly, not describing owners in isolation.
 
+This question was ultimately resolved more rigorously through the multivariable logistic regression below, which formally tests whether wearable ownership remains associated with heart disease risk after adjusting for exercise minutes and other factors simultaneously.
+
+**Sleep Duration and Heart Disease: Testing the U-Shape**
+
+Sleep hours were binned into six categories to test whether both insufficient and excessive sleep are associated with elevated risk, with the lowest risk in a middle range — a well-documented pattern in sleep research.
+
+**Outcome:**
+
+The data show a clear U-shaped pattern. Heart disease rate is highest among those sleeping under 5 hours (~42-43%), declines steadily to a minimum around 7-9 hours (~27-28%), then rises again among those sleeping 9+ hours (~34%). Notably, the relationship is asymmetric — the decline from short sleep to the optimal range is considerably steeper than the rise from the optimal range to long sleep, suggesting insufficient sleep may carry a stronger cardiovascular association than excessive sleep in this dataset. This visual pattern has not yet been formally significance-tested (see Limitations).
+
+
+**Multivariable Logistic Regression**
+
+Every association tested above examines one exposure at a time. Since real patients carry multiple, often overlapping risk factors simultaneously, a multivariable logistic regression was built to determine which associations remain statistically independent once all major variables are considered together.
+
+Model fit: residual deviance dropped from 11,041 (null model) to 6,082, indicating the selected variables explain a substantial share of the variation in heart disease status. All predictors were statistically significant at p < 0.05.
+
+**Key findings:**
+
+Wearable ownership question resolved: wearable owners show 16% lower odds of heart disease (OR 0.837), even after adjusting for exercise minutes and every other variable in the model simultaneously. This indicates the association is not fully explained by exercise alone — ownership may capture broader health-conscious behavior not otherwise measured in this dataset.
+Smoking and family history associations held up under adjustment, confirming the bivariate findings above were not artifacts of confounding.
+
+LDL/HDL ratio remains the strongest modifiable clinical predictor, with each 1-unit increase associated with more than double the odds of heart disease, independent of all other factors.
+Age showed a counterintuitive negative association (OR 0.925) after adjustment. This is best explained by age's strong correlation with max_heart_rate_achieved, already included in the model — a statistical phenomenon known as suppression, where age's independent effect is masked by a closely related covariate that already accounts for much of its predictive value. This does not mean age is unimportant; its effect is being captured through max heart rate rather than acting as a separate pathway.
 
 
 
